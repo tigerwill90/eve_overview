@@ -34,6 +34,8 @@ var (
 	ErrInvalidColor  = errors.New("invalid color")
 	ErrNoBlinks      = errors.New("no blink state found")
 	ErrInvalidBlinks = errors.New("invalid blink state")
+	ErrNoPreset      = errors.New("no preset found")
+	ErrInvalidPreset = errors.New("invalid preset")
 )
 
 type ColorType uint8
@@ -47,12 +49,27 @@ func (c ColorType) String() string {
 	return [...]string{"background", "flag"}[c]
 }
 
+type PresetGroupType uint8
+
 const (
-	backgroundKey = "background_"
-	flagKey       = "flag_"
+	AlwaysShownStates PresetGroupType = iota
+	FilteredStates
+	Groups
 )
 
-func (o *RawOverview) ParseBlink() (map[ColorType]map[uint8]bool, error) {
+func (p PresetGroupType) String() string {
+	return [...]string{"alwaysShownStates", "filteredStates", "groups"}[p]
+}
+
+const (
+	backgroundKey        = "background_"
+	flagKey              = "flag_"
+	alwaysShownStatesKey = "alwaysShownStates"
+	filteredStatesKey    = "filteredStates"
+	groupsKey            = "groups"
+)
+
+func (o *RawOverview) ParseBlinks() (map[ColorType]map[uint8]bool, error) {
 	if len(o.StateBlinks) == 0 {
 		return nil, ErrNoBlinks
 	}
@@ -139,4 +156,72 @@ func parseColor(color []string, replaceKey string) (uint8, string, error) {
 		return 0, "", fmt.Errorf("%s: %w", err, ErrInvalidColor)
 	}
 	return uint8(n), color[1], nil
+}
+
+func (o *RawOverview) ParsePresets() (map[string]map[PresetGroupType][]int, error) {
+	if len(o.Presets) == 0 {
+		return nil, ErrNoPreset
+	}
+	presets := make(map[string]map[PresetGroupType][]int, len(o.Presets))
+
+	for _, preset := range o.Presets {
+		if len(preset) != 2 {
+			return nil, ErrInvalidPreset
+		}
+		name, ok := preset[0].(string)
+		if !ok {
+			return nil, ErrInvalidPreset
+		}
+		presets[name] = make(map[PresetGroupType][]int, 3)
+
+		items, ok := preset[1].([]interface{})
+		if !ok {
+			return nil, ErrInvalidPreset
+		}
+
+		if len(items) != 3 {
+			return nil, ErrInvalidPreset
+		}
+
+		for _, val := range items {
+			item, ok := val.([]interface{})
+			if !ok {
+				return nil, ErrInvalidPreset
+			}
+			if len(item) != 2 {
+				return nil, ErrInvalidPreset
+			}
+			itemName, ok := item[0].(string)
+			if !ok {
+				return nil, ErrInvalidPreset
+			}
+
+			var itemCodes []int
+			rawItemCodes, ok := item[1].([]interface{})
+			if !ok {
+				continue
+			}
+
+			for _, rawCode := range rawItemCodes {
+				code, ok := rawCode.(int)
+				if !ok {
+					return nil, ErrInvalidPreset
+				}
+				itemCodes = append(itemCodes, code)
+			}
+
+			switch itemName {
+			case alwaysShownStatesKey:
+				presets[name][AlwaysShownStates] = itemCodes
+			case filteredStatesKey:
+				presets[name][FilteredStates] = itemCodes
+			case groupsKey:
+				presets[name][FilteredStates] = itemCodes
+			default:
+				return nil, ErrInvalidPreset
+			}
+		}
+	}
+
+	return presets, nil
 }

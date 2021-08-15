@@ -7,7 +7,7 @@ import (
 )
 
 func TestUnmarshal(t *testing.T) {
-	f, err := os.Open("all_color.yaml")
+	f, err := os.Open("exemple.yaml")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -18,5 +18,5 @@ func TestUnmarshal(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	fmt.Printf("%+v\n", ow)
+	fmt.Printf("%+v\n", ow.Columns)
 }

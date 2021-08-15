@@ -7,14 +7,14 @@ import (
 	"strconv"
 )
 
-type Background struct {
+type BackgroundSet struct {
 	Type   Type
 	Color  Color
 	Blink  bool
 	Enable bool
 }
 
-type Flag struct {
+type FlagSet struct {
 	Type   Type
 	Color  Color
 	Blink  bool
@@ -84,18 +84,18 @@ type Type uint8
 var ErrInvalidType = errors.New("invalid appearance type")
 
 // TODO move this somewhere else
-func Make(rawOverview *overview.RawOverview) ([]Background, []Flag, error) {
+func Make(rawOverview *overview.RawOverview) ([]BackgroundSet, []FlagSet, error) {
 	colors, err := rawOverview.ParseColors()
 	if err != nil && !errors.Is(err, overview.ErrNoColor) {
 		return nil, nil, err
 	}
 
-	blinks, err := rawOverview.ParseBlink()
+	blinks, err := rawOverview.ParseBlinks()
 	if err != nil && !errors.Is(err, overview.ErrNoBlinks) {
 		return nil, nil, err
 	}
 
-	backgrounds := make([]Background, 0, len(rawOverview.BackgroundOrder))
+	backgrounds := make([]BackgroundSet, 0, len(rawOverview.BackgroundOrder))
 	for _, backgroundCode := range rawOverview.BackgroundOrder {
 		if backgroundCode == unknownType {
 			continue
@@ -106,7 +106,7 @@ func Make(rawOverview *overview.RawOverview) ([]Background, []Flag, error) {
 			return nil, nil, fmt.Errorf("%d is not a valid background code: %w", backgroundCode, ErrInvalidType)
 		}
 
-		background := Background{
+		background := BackgroundSet{
 			Type: bType,
 		}
 
@@ -126,7 +126,7 @@ func Make(rawOverview *overview.RawOverview) ([]Background, []Flag, error) {
 		backgrounds = append(backgrounds, background)
 	}
 
-	flags := make([]Flag, 0, len(rawOverview.FlagOrder))
+	flags := make([]FlagSet, 0, len(rawOverview.FlagOrder))
 	for _, flagCode := range rawOverview.FlagOrder {
 		if flagCode == unknownType {
 			continue
@@ -137,7 +137,7 @@ func Make(rawOverview *overview.RawOverview) ([]Background, []Flag, error) {
 			return nil, nil, fmt.Errorf("%d is not a valid flag code: %w", flagCode, ErrInvalidType)
 		}
 
-		flag := Flag{
+		flag := FlagSet{
 			Type: fType,
 		}
 

@@ -1,0 +1,290 @@
+backgroundOrder:
+- 13
+- 44
+- 52
+- 11
+- 12
+- 14
+- 15
+- 16
+- 45
+- 9
+- 51
+- 50
+- 19
+- 18
+- 49
+- 10
+- 53
+- 66
+- 17
+- 48
+- 21
+- 20
+backgroundStates:
+- 9
+- 11
+- 12
+- 13
+- 14
+- 44
+- 45
+- 50
+- 51
+- 52
+- 66
+columnOrder:
+- ICON
+- DISTANCE
+- NAME
+- TYPE
+- TAG
+- CORPORATION
+- ALLIANCE
+- FACTION
+- MILITIA
+- SIZE
+- VELOCITY
+- RADIALVELOCITY
+- TRANSVERSALVELOCITY
+- ANGULARVELOCITY
+flagOrder:
+- 13
+- 44
+- 52
+- 11
+- 12
+- 14
+- 15
+- 16
+- 45
+- 9
+- 51
+- 50
+- 19
+- 18
+- 49
+- 10
+- 53
+- 66
+- 17
+- 48
+- 21
+- 20
+flagStates:
+- 9
+- 10
+- 11
+- 12
+- 13
+- 14
+- 15
+- 16
+- 17
+- 18
+- 19
+- 21
+- 44
+- 45
+- 49
+- 50
+- 51
+- 52
+- 53
+- 66
+overviewColumns:
+- DISTANCE
+- ICON
+- NAME
+- TYPE
+- VELOCITY
+presets:
+- - each category
+  - - - alwaysShownStates
+      - []
+    - - filteredStates
+      - []
+    - - groups
+      - - 15
+        - 90
+        - 100
+        - 301
+        - 324
+        - 335
+        - 397
+        - 450
+        - 492
+        - 934
+        - 1004
+        - 1005
+        - 1012
+        - 1106
+        - 1165
+        - 1653
+        - 1657
+        - 1991
+        - 1997
+        - 2005
+shipLabelOrder:
+- ship type
+- alliance
+- corporation
+- pilot name
+- ship name
+- null
+shipLabels:
+- - null
+  - - - bold
+      - false
+    - - color
+      - null
+    - - fontsize
+      - null
+    - - italic
+      - false
+    - - post
+      - ''
+    - - pre
+      - '['
+    - - state
+      - 0
+    - - type
+      - null
+    - - underline
+      - false
+- - alliance
+  - - - bold
+      - false
+    - - color
+      - null
+    - - fontsize
+      - null
+    - - italic
+      - false
+    - - post
+      - '&gt;'
+    - - pre
+      - '&lt;'
+    - - state
+      - 1
+    - - type
+      - alliance
+    - - underline
+      - false
+- - corporation
+  - - - bold
+      - false
+    - - color
+      - null
+    - - fontsize
+      - null
+    - - italic
+      - false
+    - - post
+      - ']'
+    - - pre
+      - '['
+    - - state
+      - 1
+    - - type
+      - corporation
+    - - underline
+      - false
+- - pilot name
+  - - - bold
+      - false
+    - - color
+      - null
+    - - fontsize
+      - null
+    - - italic
+      - false
+    - - post
+      - ' '
+    - - pre
+      - ' '
+    - - state
+      - 1
+    - - type
+      - pilot name
+    - - underline
+      - false
+- - ship name
+  - - - bold
+      - false
+    - - color
+      - null
+    - - fontsize
+      - null
+    - - italic
+      - false
+    - - post
+      - ''''
+    - - pre
+      - ''''
+    - - state
+      - 0
+    - - type
+      - ship name
+    - - underline
+      - false
+- - ship type
+  - - - bold
+      - false
+    - - color
+      - null
+    - - fontsize
+      - null
+    - - italic
+      - false
+    - - post
+      - ' '
+    - - pre
+      - ''
+    - - state
+      - 1
+    - - type
+      - ship type
+    - - underline
+      - false
+stateBlinks:
+- - background_13
+  - true
+- - background_44
+  - true
+- - flag_50
+  - true
+- - flag_51
+  - true
+- - flag_52
+  - true
+stateColorsNameList: []
+tabSetup:
+- - 0
+  - - - bracket
+      - null
+    - - color
+      - null
+    - - name
+      - General
+    - - overview
+      - each category
+- - 1
+  - - - bracket
+      - null
+    - - color
+      - null
+    - - name
+      - Mining
+    - - overview
+      - defaultmining
+- - 2
+  - - - bracket
+      - null
+    - - color
+      - null
+    - - name
+      - WarpTo
+    - - overview
+      - defaultwarpto
+userSettings: []

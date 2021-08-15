@@ -633,7 +633,7 @@ presets:
         - 1537
         - 1652
         - 1653
-- - <color=yellow>☼ MAIN -- LIGHT [npc/target/friendly]</color>
+- - <color=0xffFF0000>☼ MAIN -- LIGHT [npc/target/friendly]</color>
   - - - alwaysShownStates
       - []
     - - filteredStates
@@ -1177,7 +1177,7 @@ presets:
         - 1538
         - 1972
         - 2001
-- - <color=yellow>☼ MAIN -- FULL/DRO/FIGH [npc/target/friendly/wreck/dro/figh]</colo
+- - <color=0xffFF0000>☼ MAIN -- FULL/DRO/FIGH [npc/target/friendly/wreck/dro/figh]</colo
   - - - alwaysShownStates
       - []
     - - filteredStates
@@ -1724,7 +1724,7 @@ presets:
       - - 8
         - 9
         - 1025
-- - <color=yellow>☼ MAIN -- LIGHT/DRO/FIGH [npc/target/friendly/drone/fighter]</colo
+- - <color=0xffFF0000>☼ MAIN -- LIGHT/DRO/FIGH [npc/target/friendly/drone/fighter]</colo
   - - - alwaysShownStates
       - []
     - - filteredStates
@@ -2291,7 +2291,7 @@ presets:
         - 1538
         - 1972
         - 2001
-- - <color=yellow>☼ MAIN -- STRUCTURE [npc/target/friendly/structure]</color>
+- - <color=0xffFF0000>☼ MAIN -- STRUCTURE [npc/target/friendly/structure]</color>
   - - - alwaysShownStates
       - []
     - - filteredStates

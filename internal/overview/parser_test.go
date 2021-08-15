@@ -22,11 +22,15 @@ func TestRawUnmarshal(t *testing.T) {
 	}
 	fmt.Println(res)
 
-	other, err := row.ParseBlink()
+	other, err := row.ParseBlinks()
 	if err != nil {
 		t.Fatal(err)
 	}
 	fmt.Println(other)
 
-	fmt.Println(row.Presets)
+	another, err := row.ParsePresets()
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Println(another)
 }
